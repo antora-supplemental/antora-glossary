@@ -1,0 +1,7 @@
+= Changelog
+
+== 0.1.0 - 2026-10-24
+
+* Generated glossary index and per-letter pages from `glossary/<term>.adoc` pages.
+* Whole-word highlights for terms and synonyms, with an optional canonical article.
+* Every build exports `glossary.json`; other sites can import it and highlight those terms, linking back.

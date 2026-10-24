@@ -1,0 +1,65 @@
+= Glossary extension
+:description: Build-time Antora glossary. Alphabet index, one page per letter, highlights for terms and synonyms.
+
+A term page lives under `modules/<module>/pages/glossary/<term>.adoc`.
+The extension generates `glossary.adoc` and `glossary/letters/<letter>.adoc` at build time.
+Only letters that have terms are created.
+Those letter pages are not written into the nav.
+Seat any term page, or its canonical article, under Glossary in `nav.adoc` yourself.
+
+== Term page
+
+[source,asciidoc]
+----
+= entity
+:page-glossary-synonyms: organisation
+:page-glossary-canonical: philosophy/nomenclature.adoc
+
+The thing a user creates or joins.
+----
+
+Synonyms and the term title highlight to the same place.
+If `page-glossary-canonical` names another page, that page is the target.
+Otherwise the term page is the target.
+The canonical page does not declare anything.
+The build adds a link at the top of that page back to the glossary term.
+Highlights match a whole word, so `user` does not match inside `username`.
+
+== Playbook
+
+[source,yaml]
+----
+antora:
+  extensions:
+    - require: '@antora-supplemental/glossary'
+----
+
+== Cross-site glossaries
+
+Two Antora sites can share terms without being merged into one site.
+
+Every build writes `glossary.json` next to the site.
+It lists each term, its synonyms, a short definition and the absolute URL of its page.
+Set `site.url` in the playbook so those URLs work from other sites.
+
+Another site imports that file and highlights the imported terms in its own pages.
+They link out to the exporting site.
+
+[source,yaml]
+----
+antora:
+  extensions:
+    - require: '@antora-supplemental/glossary'
+      imports:
+        - https://docs.example.org/glossary.json
+----
+
+Imports go one way.
+A private site can import a public glossary.
+The public site never sees the private terms, because it never imports them.
+
+A local term wins when both sites define the same word.
+Each import is cached under the Antora cache directory, so a build still highlights imported terms when the other site is down.
+Imported links carry the extra class `glossary-term-external`.
+
+Set `export: false` to skip writing the file, or `export: path/name.json` to change where it goes.

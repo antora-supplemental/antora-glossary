@@ -1,0 +1,6 @@
+// antora-glossary - build-time glossary with cross-site term sharing.
+{
+  repository: 'https://github.com/antora-supplemental/antora-glossary',
+  githubTopics: ['antora', 'antora-extension', 'glossary', 'antora-glossary'],
+  productTopic: 'antora-glossary',
+}

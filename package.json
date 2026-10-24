@@ -1,0 +1,33 @@
+{
+    "name":  "@antora-supplemental/glossary",
+    "version":  "0.1.0",
+    "description":  "Antora glossary: generated alphabet index, per-letter term lists, and exact-match highlights including synonyms.",
+    "license":  "MPL-2.0",
+    "main":  "lib/index.js",
+    "exports":  {
+                    ".":  "./lib/index.js",
+                    "./antora":  "./lib/index.js"
+                },
+    "files":  [
+                  "lib",
+                  "README.adoc",
+                  "LICENSE",
+                  "CHANGELOG.adoc"
+              ],
+    "engines":  {
+                    "node":  "\u003e=18"
+                },
+    "homepage":  "https://github.com/antora-supplemental/antora-glossary",
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/antora-supplemental/antora-glossary.git"
+                   },
+    "keywords":  [
+                     "antora",
+                     "antora-extension",
+                     "glossary"
+                 ],
+    "scripts":  {
+                    "test":  "node --test test/glossary.test.js"
+                }
+}
