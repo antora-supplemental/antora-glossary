@@ -37,3 +37,9 @@ test('lists imported definitions of the same word', () => {
   assert.strictEqual(hits.length, 1)
   assert.match(collisionsHtml(hits), /Also defined on other sites[\s\S]*https:\/\/a\.example\/org[\s\S]*a\.example/)
 })
+test('links are relative to the page', () => {
+  const { relativeUrl } = require('../lib/index.js')
+  assert.strictEqual(relativeUrl('/demo/index.html', '/demo/glossary/user.html'), 'glossary/user.html')
+  assert.strictEqual(relativeUrl('/a/b/', '/a/glossary/user/'), '../glossary/user/')
+  assert.strictEqual(relativeUrl('/a/', 'https://x/y'), 'https://x/y')
+})

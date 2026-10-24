@@ -63,4 +63,19 @@ The local term page then lists the other sites' definitions under *Also defined 
 Each import is cached under the Antora cache directory, so a build still highlights imported terms when the other site is down.
 Imported links carry the extra class `glossary-term-external`.
 
+An import can also be a local path or a `file:` URL, for when CI checks out or downloads the other site's built `glossary.json`.
+For an index behind a login, add headers; `${env:NAME}` reads the value from the environment so the token stays out of the playbook.
+
+[source,yaml]
+----
+      imports:
+        - url: https://it.internal.example/glossary.json
+          headers:
+            Authorization: 'Bearer ${env:IT_DOCS_TOKEN}'
+        - ../devops-docs/build/site/glossary.json
+----
+
+Imports do not chain.
+A site exports only the terms it defines, never the ones it imported, so two sites can import each other without loops and every site lists exactly whose terms it reads.
+
 Set `export: false` to skip writing the file, or `export: path/name.json` to change where it goes.

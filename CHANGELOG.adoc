@@ -1,5 +1,12 @@
 = Changelog
 
+== 0.1.2 - 2026-10-24
+
+* Fixed: term pages were never found on Antora 3, so no index, letters, highlights or export were produced.
+* Fixed: playbook options (`imports`, `export`) and `site.url` were ignored.
+* Glossary links are page-relative, so sites under a sub-path work.
+* Imports accept a local path or `file:` URL, and `headers` with `${env:NAME}` values for indexes behind a login.
+
 == 0.1.1 - 2026-10-24
 
 * When an imported glossary defines the same word as a local term, the local term page lists those definitions under *Also defined on other sites*, with links.

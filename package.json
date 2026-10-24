@@ -1,6 +1,6 @@
 {
     "name":  "@antora-supplemental/glossary",
-    "version":  "0.1.1",
+    "version":  "0.1.2",
     "description":  "Antora glossary: generated alphabet index, per-letter term lists, and exact-match highlights including synonyms.",
     "license":  "MPL-2.0",
     "main":  "lib/index.js",
