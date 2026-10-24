@@ -59,6 +59,7 @@ A private site can import a public glossary.
 The public site never sees the private terms, because it never imports them.
 
 A local term wins when both sites define the same word.
+The local term page then lists the other sites' definitions under *Also defined on other sites*, so readers can compare them.
 Each import is cached under the Antora cache directory, so a build still highlights imported terms when the other site is down.
 Imported links carry the extra class `glossary-term-external`.
 

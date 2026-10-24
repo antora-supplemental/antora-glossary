@@ -1,5 +1,9 @@
 = Changelog
 
+== 0.1.1 - 2026-10-24
+
+* When an imported glossary defines the same word as a local term, the local term page lists those definitions under *Also defined on other sites*, with links.
+
 == 0.1.0 - 2026-10-24
 
 * Generated glossary index and per-letter pages from `glossary/<term>.adoc` pages.

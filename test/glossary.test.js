@@ -27,3 +27,13 @@ test('collects terms with synonyms', () => {
   const [t] = collectTerms(files)
   assert.deepStrictEqual([t.title, t.synonyms, t.definition], ['entity', ['organisation'], 'The thing a user creates.'])
 })
+test('lists imported definitions of the same word', () => {
+  const { collisions, collisionsHtml } = require('../lib/index.js')
+  const term = { title: 'entity', synonyms: ['organisation'] }
+  const hits = collisions(term, [
+    { term: 'Organisation', url: 'https://a.example/org', definition: 'd' },
+    { term: 'user', url: 'https://a.example/u' },
+  ])
+  assert.strictEqual(hits.length, 1)
+  assert.match(collisionsHtml(hits), /Also defined on other sites[\s\S]*https:\/\/a\.example\/org[\s\S]*a\.example/)
+})
